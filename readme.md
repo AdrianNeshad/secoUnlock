@@ -6,7 +6,7 @@
 
 The repository already includes a `seed.seco` file and the corresponding password in `passwords.txt` to test out the script.
 
-<p>### **Run the script**</p>
+### **Run the script**
 
 ```
 node main.js
