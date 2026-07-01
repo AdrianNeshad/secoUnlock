@@ -25,7 +25,7 @@ const secoFilePath = path.join(__dirname, "case/seed.seco");
 const outputDir = path.join(__dirname, "output");
 
 function ExodusExtract() {
-    const passwords = fs.readFileSync(path.join(__dirname, "case/password.txt"), "utf-8").split("\n");
+    const passwords = fs.readFileSync(path.join(__dirname, "case/passwords.txt"), "utf-8").split("\n");
     for (let password of passwords) {
         password = password.trim();
         if (password.length > 0) {
