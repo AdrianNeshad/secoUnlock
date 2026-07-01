@@ -6,18 +6,10 @@
 
 The repository already includes a `seed.seco` file and the corresponding password in `passwords.txt` to test out the script.
 
-<h2>Installation Steps:</h2>
-
-<p>1. Install all required modules</p>
+<p>Run the script</p>
 
 ```
-npm i
-```
-
-<p>2. Run the script</p>
-
-```
-node index.js
+node main.js
 ```
 
 ### **Användaravtal:**
