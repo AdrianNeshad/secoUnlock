@@ -6,11 +6,6 @@
 
 The repository already includes a `seed.seco` file and the corresponding password in `passwords.txt` to test out the script.
 
-### **Important Notes:**
-
-*   Please ensure you have a legitimate reason to recover your wallet 🔍.
-*   This tool is intended for **personal use only 🔒**.
-
 <h2>Installation Steps:</h2>
 
 <p>1. Install all required modules</p>
@@ -24,3 +19,7 @@ npm i
 ```
 node index.js
 ```
+
+### **Användaravtal:**
+
+*   Vid lyckad extrahering av `seed.seco`-fil är användaren skyldig Adrian (repository owner) en öl.
