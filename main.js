@@ -58,7 +58,7 @@ function ExodusExtract() {
             }
         }
     }
-    return { "error": "No matching password found.", "success": false };
+    return { "Error": "No matching password found.", "success": false };
 }
 
 var result = ExodusExtract();
@@ -66,6 +66,6 @@ var result = ExodusExtract();
 if (result.success === false) {
     console.log(result);
 } else {
-    console.log("Password:", result.password);
-    console.log("Mnemonic:", result.mnemonic);
+    console.log("\u001b[34mPassword: \u001b[32m", result.password);
+    console.log("\u001b[34mMnemonic: \u001b[32m", result.mnemonic);
 }
