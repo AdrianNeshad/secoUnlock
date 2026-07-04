@@ -51,7 +51,10 @@ function ExodusExtract() {
                 fs.writeFileSync(filePath, decryptedMnemonic);
 
                 // Output av mnemonic i konsolen
-                return { "mnemonic": decryptedMnemonic };
+                return { mnemonic: decryptedMnemonic,
+                        password: password,
+                        success: true
+                 };
             }
         }
     }
@@ -59,4 +62,10 @@ function ExodusExtract() {
 }
 
 var result = ExodusExtract();
-console.log(result);
+
+if (result.success === false) {
+    console.log(result);
+} else {
+    console.log("Password:", result.password);
+    console.log("Mnemonic:", result.mnemonic);
+}
