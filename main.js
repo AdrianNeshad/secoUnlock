@@ -66,6 +66,6 @@ var result = ExodusExtract();
 if (result.success === false) {
     console.log(result);
 } else {
-    console.log("\u001b[34mPassword: \u001b[32m", result.password);
-    console.log("\u001b[34mMnemonic: \u001b[32m", result.mnemonic);
+    console.log("\n\u001b[34mPassword: \u001b[32m", result.password,"\n");
+    console.log("\u001b[34mMnemonic: \u001b[32m", result.mnemonic,"\n");
 }
