@@ -25,40 +25,54 @@ const secoFilePath = path.join(__dirname, "case/seed.seco");
 const outputDir = path.join(__dirname, "output");
 
 function ExodusExtract() {
-    const passwords = fs.readFileSync(path.join(__dirname, "case/passwords.txt"), "utf-8").split("\n");
-    for (let password of passwords) {
-        password = password.trim();
-        if (password.length > 0) {
-            let decryptedMnemonic = decrypt(secoFilePath, password);
-            if (decryptedMnemonic) {
+    const passwords = fs
+        .readFileSync(path.join(__dirname, "case/passwords.txt"), "utf-8")
+        .split("\n")
+        .map(password => password.trim())
+        .filter(password => password.length > 0);
 
-                if (!fs.existsSync(outputDir)) {
-                    fs.mkdirSync(outputDir, { recursive: true });
-                }
+    const total = passwords.length;
 
-                // Hitta ett ledigt filnamn (Mnemonic.txt, Mnemonic1.txt, Mnemonic2.txt, ...)
-                let fileName = "Mnemonic.txt";
-                let filePath = path.join(outputDir, fileName);
-                let counter = 1;
+    for (let i = 0; i < total; i++) {
+        const password = passwords[i];
 
-                while (fs.existsSync(filePath)) {
-                    fileName = `Mnemonic${counter}.txt`;
-                    filePath = path.join(outputDir, fileName);
-                    counter++;
-                }
+        // Visa progress i terminalen
+        console.log(`\u001b[33m[${i + 1}/${total}] Testing password:\u001b[0m ${password}`);
 
-                // Skriv mnemonicen till filen
-                fs.writeFileSync(filePath, decryptedMnemonic);
+        let decryptedMnemonic = decrypt(secoFilePath, password);
 
-                // Output av mnemonic i konsolen
-                return { mnemonic: decryptedMnemonic,
-                        password: password,
-                        success: true
-                 };
+        if (decryptedMnemonic) {
+
+            if (!fs.existsSync(outputDir)) {
+                fs.mkdirSync(outputDir, { recursive: true });
             }
+
+            // Hitta ett ledigt filnamn (Mnemonic.txt, Mnemonic1.txt, Mnemonic2.txt, ...)
+            let fileName = "Mnemonic.txt";
+            let filePath = path.join(outputDir, fileName);
+            let counter = 1;
+
+            while (fs.existsSync(filePath)) {
+                fileName = `Mnemonic${counter}.txt`;
+                filePath = path.join(outputDir, fileName);
+                counter++;
+            }
+
+            // Skriv mnemonicen till filen
+            fs.writeFileSync(filePath, decryptedMnemonic);
+
+            return {
+                mnemonic: decryptedMnemonic,
+                password: password,
+                success: true
+            };
         }
     }
-    return { "Error": "No matching password found.", "success": false };
+
+    return {
+        Error: "No matching password found.",
+        success: false
+    };
 }
 
 var result = ExodusExtract();
